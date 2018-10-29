@@ -38,10 +38,42 @@ class Toolbar extends React.Component {
 
   componentDidMount() {
     this.props.store.subscribeToItem('editorState', this.onEditorStateChange);
+    this.setScrollEventListeners();
   }
 
   componentWillUnmount() {
     this.props.store.unsubscribeFromItem('editorState', this.onEditorStateChange);
+    this.removeScrollEventListeners();
+  }
+
+  componentDidUpdate (prevProps) {
+    if (prevProps.scrollParent !== this.props.scrollParent) {
+      this.removeScrollEventListeners();
+      this.setScrollEventListeners();
+    }
+  }
+
+  onScrollParent = () => {
+    this.state.position.transform !== 'scale(0)' && this.setState({
+      position: {
+        transform: 'scale(0)'
+      }
+    });
+  }
+
+  withScrollParent (callback) {
+    const scrollParent = this.props.scrollParent &&
+      document.querySelectorAll(this.props.scrollParent)[0];
+    scrollParent && scrollParent.firstChild &&
+      callback(scrollParent.firstChild);
+  }
+
+  setScrollEventListeners () {
+    this.withScrollParent(p => p.addEventListener('scroll', this.onScrollParent));
+  }
+
+  removeScrollEventListeners () {
+    this.withScrollParent(p => p.removeEventListener('scroll', this.onScrollParent));
   }
 
   onEditorStateChange = (editorState) => {
@@ -91,7 +123,7 @@ class Toolbar extends React.Component {
       }
 
       const position = {
-        top: topWithNoScroll - valueTop,
+        top: (topWithNoScroll > valueTop) ? topWithNoScroll - valueTop: 0,
         transform: 'scale(1)',
         transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
       };
