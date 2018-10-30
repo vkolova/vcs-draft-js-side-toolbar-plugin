@@ -1,15 +1,18 @@
 .blockType {
+  height: 36px;
+  width: 36px;
+  margin: 0;
+  padding: 4px;
+
+  line-height: 32px;
   box-sizing: border-box;
   border: 1px solid #ddd;
   background: #fff;
-  padding: 5px;
-  margin: 0;
   border-radius: 18px;
-  cursor: pointer;
-  height: 36px;
-  width: 36px;
-  line-height: 36px;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.21);
+
   text-align: center;
+  cursor: pointer;
 }
 
 .blockType svg {
@@ -25,27 +28,32 @@
 }
 
 .popup {
+  width: 148px;
+  left: 110px;
+  top: 0;
+  margin: 0;
+  margin-left: 10px;
+
+  font-size: 0;
   position: absolute;
-  left: 50%;
   transform: translate(-50%);
-  background: #efefef;
+  background: #ffffff;
   border: 1px solid #ddd;
   background: #fff;
-  border-radius: 2px;
-  box-shadow: 0px 1px 3px 0px rgba(220,220,220,1);
-  z-index: 3;
+  border-radius: 3px;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.21);
   box-sizing: border-box;
-  width: 74px;
-  margin-top: 8px;
+  z-index: 3;
 }
 
 .popup:after, .popup:before {
-  bottom: 100%;
-  left: 50%;
-  border: solid transparent;
-  content: " ";
   height: 0;
   width: 0;
+  left: -5px;
+  top: 50%;
+  bottom: 100%;
+  border: solid transparent;
+  content: " ";
   position: absolute;
   pointer-events: none;
 }
@@ -53,8 +61,8 @@
 .popup:after {
   border-color: rgba(251, 251, 251, 0);
   border-bottom-color: #fbfbfb;
-  border-width: 4px;
-  margin-left: -4px;
+  border-width: 5px;
+  margin-left: -5px;
 }
 .popup:before {
   border-color: rgba(221, 221, 221, 0);

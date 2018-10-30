@@ -1,16 +1,20 @@
 .buttonWrapper {
   display: inline-block;
+  line-height: 25px;
 }
 
 .button {
+  height: auto;
+  width: 36px;
+  padding-top: 5px;
+
   background: #fbfbfb;
   color: #888;
   font-size: 18px;
   border: 0;
-  padding-top: 5px;
   vertical-align: bottom;
-  height: 34px;
-  width: 36px;
+
+  cursor: pointer;
 }
 
 .button svg {
